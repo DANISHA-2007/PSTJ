@@ -1,31 +1,25 @@
 class Solution {
     public int maxSubArray(int[] nums) {
-        int current = nums[0];
-        int maximum = nums[0];
+        int currentSum = nums[0];
+        int maxSum = nums[0];
 
         for (int i = 1; i < nums.length; i++) {
-            current = Math.max(nums[i], current + nums[i]);
-            maximum = Math.max(maximum, current);
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+            maxSum = Math.max(maxSum, currentSum);
         }
 
-        return maximum;
+        return maxSum;
     }
 }
+
 OUTPUT:
-TEST RESULT
-
-Status: Accepted
-Runtime: 0 ms
-
-Case 1: Passed
-Case 2: Passed
-Case 3: Passed
-
 Input:
-nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+nums = [-2,1,-3,4,-1,2,1,-5,4]
 
 Output:
 6
 
 Expected:
 6
+
+Status: Correct 
