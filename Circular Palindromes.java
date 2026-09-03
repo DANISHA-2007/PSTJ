@@ -1,81 +1,85 @@
-import java.io.*;
 import java.util.*;
 
 public class Solution {
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int n = Integer.parseInt(br.readLine().trim());
-        String s = br.readLine().trim();
-
-        String doubled = s + s;
-
-        for (int rotation = 0; rotation < n; rotation++) {
-            int maxPalindrome = longestPalindrome(
-                doubled.substring(rotation, rotation + n)
-            );
-
-            System.out.println(maxPalindrome);
-        }
-    }
-
-    static int longestPalindrome(String s) {
-        int max = 1;
+    // Function to find longest palindrome length
+    public static int longestPalindrome(String s) {
+        int maxLen = 1;
 
         for (int i = 0; i < s.length(); i++) {
-            max = Math.max(max, expand(s, i, i));
-            max = Math.max(max, expand(s, i, i + 1));
+            // Odd length
+            maxLen = Math.max(maxLen, expand(s, i, i));
+            // Even length
+            maxLen = Math.max(maxLen, expand(s, i, i + 1));
         }
 
-        return max;
+        return maxLen;
     }
 
-    static int expand(String s, int left, int right) {
-        while (left >= 0 && right < s.length()
-                && s.charAt(left) == s.charAt(right)) {
+    // Expand around center
+    private static int expand(String s, int left, int right) {
+        while (left >= 0 && right < s.length() &&
+               s.charAt(left) == s.charAt(right)) {
             left--;
             right++;
         }
-
         return right - left - 1;
+    }
+
+    // Rotate string
+    private static String rotate(String s, int k) {
+        return s.substring(k) + s.substring(0, k);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        String s = sc.next();
+
+        for (int i = 0; i < n; i++) {
+            String rotated = rotate(s, i);
+            System.out.println(longestPalindrome(rotated));
+        }
+
+        sc.close();
     }
 }
 
 OUTPUT:
 Input (stdin)
+-------------
+12
+eededdeedede
 
-13
-aaaaabbbbaaaa
 
 Your Output (stdout)
+-------------------
+5
+7
+7
+7
+7
+9
+9
+9
+9
+7
+5
+4
 
-12
-12
-10
-8
-8
-9
-11
-13
-11
-9
-8
-8
-10
 
 Expected Output
-
-12
-12
-10
-8
-8
+---------------
+5
+7
+7
+7
+7
 9
-11
-13
-11
 9
-8
-8
-10
+9
+9
+7
+5
+4

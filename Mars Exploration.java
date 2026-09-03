@@ -1,20 +1,14 @@
-import java.util.*;
+import java.io.*;
 
 public class Solution {
 
     public static int marsExploration(String s) {
         int count = 0;
 
+        String sos = "SOS";
+
         for (int i = 0; i < s.length(); i++) {
-            char expected;
-
-            if (i % 3 == 0 || i % 3 == 2) {
-                expected = 'S';
-            } else {
-                expected = 'O';
-            }
-
-            if (s.charAt(i) != expected) {
+            if (s.charAt(i) != sos.charAt(i % 3)) {
                 count++;
             }
         }
@@ -22,26 +16,24 @@ public class Solution {
         return count;
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String s = sc.nextLine();
+        String s = br.readLine();
 
         System.out.println(marsExploration(s));
-
-        sc.close();
     }
 }
 
 OUTPUT:
-Input (stdin)
+Accepted
+Runtime: 0 ms
 
+Input
 SOSSPSSQSSOR
 
-Your Output (stdout)
-
+Output
 3
 
 Expected Output
-
 3

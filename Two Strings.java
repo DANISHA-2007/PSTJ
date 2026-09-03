@@ -22,11 +22,11 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int t = Integer.parseInt(br.readLine().trim());
+        int t = Integer.parseInt(br.readLine());
 
         while (t-- > 0) {
-            String s1 = br.readLine().trim();
-            String s2 = br.readLine().trim();
+            String s1 = br.readLine();
+            String s2 = br.readLine();
 
             System.out.println(twoStrings(s1, s2));
         }
@@ -34,20 +34,14 @@ public class Solution {
 }
 
 OUTPUT:
+Compiler Message
+Success
 Input (stdin)
-
 2
 hello
 world
 hi
 world
-
-Your Output (stdout)
-
-YES
-NO
-
 Expected Output
-
 YES
 NO

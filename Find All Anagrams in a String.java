@@ -8,23 +8,27 @@ class Solution {
             return result;
         }
 
-        int[] pCount = new int[26];
-        int[] windowCount = new int[26];
+        int[] countP = new int[26];
+        int[] countWindow = new int[26];
 
+        // Count characters in p
         for (char c : p.toCharArray()) {
-            pCount[c - 'a']++;
+            countP[c - 'a']++;
         }
 
         int windowSize = p.length();
 
+        // Sliding window
         for (int i = 0; i < s.length(); i++) {
-            windowCount[s.charAt(i) - 'a']++;
+            countWindow[s.charAt(i) - 'a']++;
 
+            // Keep window size equal to p.length()
             if (i >= windowSize) {
-                windowCount[s.charAt(i - windowSize) - 'a']--;
+                countWindow[s.charAt(i - windowSize) - 'a']--;
             }
 
-            if (Arrays.equals(pCount, windowCount)) {
+            // Check if current window is an anagram
+            if (i >= windowSize - 1 && Arrays.equals(countP, countWindow)) {
                 result.add(i - windowSize + 1);
             }
         }
@@ -34,15 +38,20 @@ class Solution {
 }
 
 OUTPUT:
-Input
+Accepted
+Runtime: 0 ms
 
-s = "cbaebabacd"
-p = "abc"
+Case 1
+Case 2
+
+Input
+s =
+"cbaebabacd"
+p =
+"abc"
 
 Output
-
 [0,6]
 
-Expected Output
-
+Expected
 [0,6]

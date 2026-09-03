@@ -1,62 +1,64 @@
-import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class StringSimilarity {
 
-    static long stringSimilarity(String s) {
+    public static long stringSimilarity(String s) {
         int n = s.length();
-        int[] z = new int[n];
-
+        int[] Z = new int[n];
         int left = 0, right = 0;
-        long sum = n; // Similarity with itself
 
         for (int i = 1; i < n; i++) {
-
             if (i <= right) {
-                z[i] = Math.min(right - i + 1, z[i - left]);
+                Z[i] = Math.min(right - i + 1, Z[i - left]);
             }
 
-            while (i + z[i] < n &&
-                   s.charAt(z[i]) == s.charAt(i + z[i])) {
-                z[i]++;
+            while (i + Z[i] < n && s.charAt(Z[i]) == s.charAt(i + Z[i])) {
+                Z[i]++;
             }
 
-            if (i + z[i] - 1 > right) {
+            if (i + Z[i] - 1 > right) {
                 left = i;
-                right = i + z[i] - 1;
+                right = i + Z[i] - 1;
             }
+        }
 
-            sum += z[i];
+        long sum = n; // include full string match
+        for (int z : Z) {
+            sum += z;
         }
 
         return sum;
     }
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int t = Integer.parseInt(br.readLine().trim());
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
 
         while (t-- > 0) {
-            String s = br.readLine().trim();
+            String s = sc.nextLine();
             System.out.println(stringSimilarity(s));
         }
+
+        sc.close();
     }
 }
 
 OUTPUT:
 Input (stdin)
-
+-------------
 2
 ababaa
 aa
 
-Your Output (stdout)
 
+Your Output (stdout)
+-------------------
 11
 3
 
-Expected Output
 
+Expected Output
+---------------
 11
 3

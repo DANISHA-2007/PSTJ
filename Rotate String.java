@@ -4,20 +4,27 @@ class Solution {
             return false;
         }
 
-        return (s + s).contains(goal);
+        String combined = s + s;
+
+        return combined.contains(goal);
     }
 }
 
 OUTPUT:
-Input
+Accepted
+Runtime: 0 ms
 
-s = "m"
-goal = "f"
+Case 1
+Case 2
+
+Input
+s =
+"m"
+goal =
+"f"
 
 Output
-
 false
 
-Expected Output
-
+Expected
 false
